@@ -1,0 +1,12 @@
+version: "3.7"
+services:
+  automation_api:
+    image: automation_api:latest
+    build: .
+    container_name: automation
+    ports:
+      - "3000:3000"
+    env_file: env_local.list
+    volumes:
+      - ./src:/app
+    command: sh -c "gunicorn -w 1 -b 0.0.0.0:3000 app:api --reload"
