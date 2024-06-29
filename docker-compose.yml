@@ -1,5 +1,15 @@
 version: "3.7"
 services:
+  db:
+    build: ./database/.
+    container_name: postgresql
+    environment:
+      - POSTGRES_USER=my_user
+      - POSTGRES_PASSWORD=my_pwd
+      - POSTGRES_DB=my_db
+    ports:
+      - 54320:5432
+  
   automation_api:
     image: automation_api:latest
     build: .
@@ -10,3 +20,11 @@ services:
     volumes:
       - ./src:/app
     command: sh -c "gunicorn -w 1 -b 0.0.0.0:3000 app:api --reload"
+
+  mockserver:
+    image: jamesdbloom/mockserver
+    container_name: mockserver
+    ports:
+      - "1080:1080"
+    environment:
+      - MOCKSERVER_PORT=1080
