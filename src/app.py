@@ -21,3 +21,5 @@ api = falcon.App(middleware=[SessionManager(session_maker)])
 healthcheck_resource = HealthcheckResource()
 api.add_route('/automation', healthcheck_resource)
 api.add_route('/automation/{placeholder}', healthcheck_resource)
+
+api.add_route('/routine', routine_resource)
