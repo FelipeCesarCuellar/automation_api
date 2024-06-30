@@ -1,12 +1,13 @@
-
 import falcon
 import logging
 
 from constants import ENV_VARS
 from middlewares.session_manager import SessionManager
 from resources.health_check import HealthcheckResource
+from resources.routine import RoutineResource
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+
 
 
 logging.basicConfig(format='%(process)d - [%(name)s] [%(levelname)s] %(message)s', level=logging.DEBUG)
@@ -22,4 +23,6 @@ healthcheck_resource = HealthcheckResource()
 api.add_route('/automation', healthcheck_resource)
 api.add_route('/automation/{placeholder}', healthcheck_resource)
 
-api.add_route('/routine', routine_resource)
+routine_resource = RoutineResource()
+api.add_route('/automation/routine', routine_resource)
+api.add_route('/automation/routine/{routine_key}', routine_resource, suffix='by_key')

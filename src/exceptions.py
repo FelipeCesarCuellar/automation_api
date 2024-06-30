@@ -1,4 +1,4 @@
-class ClientException:
+class ClientException(BaseException):
     def __init__(self, title, description, status_code):
         self.title = title
         self.description = description
