@@ -22,7 +22,7 @@ CREATE TABLE execution (
     routine_id INTEGER,
     trigger_at VARCHAR(255),
     UNIQUE (execution_key)
-    CONSTRAINT fk_execution_routine FOREIGN KEY (routine_id) REFERENCES routine(id)
+    FOREIGN KEY (routine_id) REFERENCES routine(id)
 )
 
 CREATE TABLE execution_event (
@@ -32,5 +32,5 @@ CREATE TABLE execution_event (
     created_at VARCHAR(255) NOT NULL,
     executed_at VARCHAR(255)
     UNIQUE (execution_event_key)
-    CONSTRAINT fk_execution_event_execution FOREIGN KEY (execution_id) REFERENCES execution(id)
+    FOREIGN KEY (execution_id) REFERENCES execution(id)
 )

@@ -1,4 +1,5 @@
 from sqlalchemy import Column, Integer, String
+from sqlalchemy.orm import relationship
 from models.base import Base
 
 class Routine(Base):
@@ -9,3 +10,5 @@ class Routine(Base):
     routine_key = Column(String)
     created_at = Column(String)
     deactivated_on = Column(String)
+
+    executions = relationship('Execution', back_populates='routine')
