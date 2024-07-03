@@ -5,6 +5,8 @@ from constants import ENV_VARS
 from middlewares.session_manager import SessionManager
 from resources.health_check import HealthcheckResource
 from resources.routine import RoutineResource
+from resources.execution import ExecutionResource
+from resources.execution_event import ExecutionEventResource
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
@@ -27,3 +29,7 @@ routine_resource = RoutineResource()
 api.add_route('/automation/routine', routine_resource)
 api.add_route('/automation/routine/list', routine_resource, suffix='list')
 api.add_route('/automation/routine/{routine_key}', routine_resource, suffix='by_key')
+
+execution_resource = ExecutionResource()
+
+execution_event_resource = ExecutionEventResource()
