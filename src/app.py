@@ -31,5 +31,11 @@ api.add_route('/automation/routines', routine_resource, suffix='list')
 api.add_route('/automation/routine/{routine_key}', routine_resource, suffix='by_key')
 
 execution_resource = ExecutionResource()
+api.add_route('/automation/execution', execution_resource)
+api.add_route('/automation/executions', execution_resource, suffix='list')
+api.add_route('/automation/execution/{execution_key}', execution_resource, suffix='by_key')
 
 execution_event_resource = ExecutionEventResource()
+api.add_route('/automation/execution_event', execution_event_resource)
+api.add_route('/automation/execution_events', execution_event_resource, suffix='list')
+api.add_route('/automation/execution_event/{execution_event_key}', execution_event_resource, suffix='by_key')
