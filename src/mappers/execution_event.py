@@ -15,5 +15,5 @@ class ExecutionEventMapper():
         model.execution_id= execution_source['execution_id']
         model.execution_event_key = str(uuid.uuid4())
         model.created_at = datetime.now().isoformat()
-        model.executed_at = execution_source['executed_at']
+        model.executed_at = None
         return model
