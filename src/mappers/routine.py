@@ -14,6 +14,6 @@ class RoutineMapper():
         model = Routine()
         model.name = routine_source['name']
         model.routine_key = str(uuid.uuid4())
-        model.deactivated_on = routine_source['deactivated_on']
+        model.deactivated_on = None #routine_source['deactivated_on']
         model.created_at = datetime.now().isoformat()
         return model

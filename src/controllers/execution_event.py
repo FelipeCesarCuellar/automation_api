@@ -7,7 +7,7 @@ from exceptions import ClientException
 from mappers.execution_event import ExecutionEventMapper
 from models.execution_event import ExecutionEvent
 
-class ExecutionEventEventController(object):
+class ExecutionEventController(object):
     def __init__(self, db_session):
         self.logger = logging.getLogger(__name__)
         self.db_session = db_session
