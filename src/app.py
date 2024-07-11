@@ -6,9 +6,10 @@ from middlewares.session_manager import SessionManager
 from resources.health_check import HealthcheckResource
 from resources.routine import RoutineResource
 from resources.execution import ExecutionResource
-from resources.execution_event import ExecutionEventResource
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+
+from resources.schedule import ScheduleResource
 
 
 
@@ -35,7 +36,5 @@ api.add_route('/automation/execution', execution_resource)
 api.add_route('/automation/executions', execution_resource, suffix='list')
 api.add_route('/automation/execution/{execution_key}', execution_resource, suffix='by_key')
 
-execution_event_resource = ExecutionEventResource()
-api.add_route('/automation/execution_event', execution_event_resource)
-api.add_route('/automation/execution_events', execution_event_resource, suffix='list')
-api.add_route('/automation/execution_event/{execution_event_key}', execution_event_resource, suffix='by_key')
+schedule_resource = ScheduleResource()
+api.add_route('/automation/schedule', schedule_resource, suffix='run_execution')
