@@ -6,8 +6,11 @@ from models.execution import Execution
 class ExecutionMapper():
     @staticmethod
     def toDTO(execution_model: Execution) -> dict:
-        dto = {'name': execution_model.name,'routine_key': execution_model.routine_key, 
-                'deactivated_on': execution_model.deactivated_on, 'created_at': execution_model.created_at}
+        dto = {'name': execution_model.name, 
+               'execution_key': execution_model.execution_key, 
+               'routine_id': execution_model.routine_id, 
+                'execution_data': execution_model.execution_data, 
+                'trigger_at': execution_model.trigger_at}
         return dto
 
     def toModel(execution_source: dict) -> Execution:

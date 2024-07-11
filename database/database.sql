@@ -34,7 +34,7 @@ CREATE TABLE execution_instance(
     triggered_at DATETIME,
     UNIQUE (execution_instance_key),
     FOREIGN KEY (execution_id) REFERENCES execution(id)
-)
+);
 
 CREATE TABLE execution_instance_event (
     id SERIAL PRIMARY KEY,

@@ -4,7 +4,10 @@ import logging
 from sqlalchemy.exc import NoResultFound
 
 from exceptions import ClientException
+
 from mappers.execution import ExecutionMapper
+
+from models.routine import Routine
 from models.execution import Execution
 
 class ExecutionController(object):
@@ -39,6 +42,8 @@ class ExecutionController(object):
         return [ExecutionMapper.toDTO(execution) for execution in executions]
 
     def create_new_execution(self, execution_source):
+        routine_model = self.db_session.query(Routine).filter(Routine.routine_key == execution_source['routine_key']).one()
+        execution_source['routine_id'] = routine_model.id
         execution_model = ExecutionMapper.toModel(execution_source)
 
         self.db_session.add(execution_model)
