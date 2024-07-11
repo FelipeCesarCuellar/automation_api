@@ -2,6 +2,7 @@ import falcon
 import logging
 
 from sqlalchemy.exc import NoResultFound
+from datetime import datetime
 
 from exceptions import ClientException
 from mappers.routine import RoutineMapper
@@ -28,10 +29,10 @@ class RoutineController(object):
         except NoResultFound:
             raise ClientException(f'Routine not found', f'No routine found for routine key {routine_key}', falcon.HTTP_404)
             
-        self.db_session.delete(routine)
+        routine.deactivated_on = datetime.now()
         self.db_session.commit()
 
-        return
+        return RoutineMapper.toDTO(routine)
 
     def retrieve_all_routines(self):
         routines = self.db_session.query(Routine).all()
@@ -40,7 +41,7 @@ class RoutineController(object):
 
     def create_new_routine(self, routine_source):
         routine_model = RoutineMapper.toModel(routine_source)
-
+        self.logger.info("Hi bro")
         self.db_session.add(routine_model)
         self.db_session.commit()
 
